@@ -21,9 +21,9 @@ public class SoufangThread implements Runnable{
     @Override
     public void run(){
         List<House> houseList = new ArrayList<>();
-            for (int start=1;start<=32;start++){
+            for (int start=1;start<=18;start++){
                 System.out.println(start);
-                houseList.addAll(queryHouse("http://newhouse.km.fang.com/house/s/guanduqu/b92/?ctm=1.km.xf_search.page."+start)) ;
+                houseList.addAll(queryHouse("http://newhouse.km.fang.com/house/s/b9"+start+"/?ctm=1.km.xf_search.page.1")) ;
             }
         final String[] FILE_HEADER = {"Name","Addr","Money"};
         final String FILE_NAME = "d://house/house.csv";
@@ -57,8 +57,18 @@ public class SoufangThread implements Runnable{
                     Element detail = e.getElementsByClass("nlc_details").get(0);
                     House house = new House();
                     house.setName(detail.getElementsByClass("nlcd_name").get(0).text());
-                    house.setMoney(detail.getElementsByClass("nhouse_price").get(0).text());
-                    house.setAddr(detail.getElementsByClass("address").get(0).text());
+                    try{
+
+                        house.setMoney(detail.getElementsByClass("nhouse_price").get(0).text());
+                    }catch (Exception e1){
+
+                    }
+
+                    try{
+                        house.setAddr(detail.getElementsByClass("address").get(0).text());
+                    }catch (Exception e1){
+
+                    }
                     houseList.add(house);
                 }
             });
