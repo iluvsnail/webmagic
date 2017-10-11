@@ -15,6 +15,24 @@ public class Vvic {
     private String wechat;
     private String location;
     private String product;
+    private String rank;
+    private String catgos;
+
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
+
+    public String getCatgos() {
+        return catgos;
+    }
+
+    public void setCatgos(String catgos) {
+        this.catgos = catgos;
+    }
 
     public String getName() {
         return name;
