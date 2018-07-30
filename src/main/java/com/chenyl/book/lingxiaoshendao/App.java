@@ -1,4 +1,4 @@
-package com.chenyl.book.longwudizun;
+package com.chenyl.book.lingxiaoshendao;
 
 import com.chenyl.util.TxtUtil;
 import org.jsoup.Jsoup;
@@ -20,14 +20,10 @@ public class App
         String bookname = App.class.getPackage().getName();
         String path = "/home/iluvsnail/"+bookname.substring(bookname.lastIndexOf(".")+1)+".txt";
         //http://www.du1du.net/xs207207/
-        Document doc= Jsoup.connect(BASE_URL+"/0_513/").ignoreContentType(true).get();
-        AtomicBoolean flag = new AtomicBoolean(false);
+        Document doc= Jsoup.connect(BASE_URL+"/11_11669/").ignoreContentType(true).get();
         doc.select("#list a").stream().forEachOrdered((element)->{
             Document doc1= null;
             try {
-                if(element.text().contains("868"))
-                    flag.set(true);
-                if(flag.get())
                 analysChapter(element,path);
             } catch (Exception e) {
                 System.out.println(BASE_URL+element.attr("href"));
