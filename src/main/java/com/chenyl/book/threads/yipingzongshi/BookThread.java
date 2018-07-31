@@ -12,7 +12,7 @@ public class BookThread implements Runnable {
     private int cursor;
     private List<Element> list;
 
-    String bookname = App.class.getPackage().getName()+"test";
+    String bookname = App.class.getPackage().getName()+"";
     String path = "/home/iluvsnail/"+bookname.substring(bookname.lastIndexOf(".")+1)+".txt";
     public BookThread(int cursor, List<Element> list) {
         this.list = list;
