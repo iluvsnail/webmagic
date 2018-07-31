@@ -23,6 +23,16 @@ public class BookThread implements Runnable {
     public void run() {
         for (int pos=cursor;pos<cursor+100 && pos<list.size();pos++){
             analysChapter(list.get(pos),pos);
+            if(BookExcutor.incr()){
+                list.forEach(e->{
+                    try {
+                        TxtUtil.writeTxtFile(e.text()+"\n\n", new File(path));
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    }
+                });
+                BookExcutor.fixedThreadPool.shutdownNow();
+            }
         }
 
     }
@@ -35,16 +45,7 @@ public class BookThread implements Runnable {
             System.out.println(element.text());
             element1.prependText(element.text() + "\n");
             list.set(pos, element1);
-            if(BookExcutor.incr()){
-               list.forEach(e->{
-                   try {
-                       TxtUtil.writeTxtFile(e.text()+"\n\n", new File(path));
-                   } catch (Exception e1) {
-                       e1.printStackTrace();
-                   }
-               });
 
-            }
         }catch (Exception e){
             System.out.println(App.BASE_URL+element.select("a").attr("href"));
             analysChapter(element,pos);
